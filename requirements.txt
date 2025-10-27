@@ -1,0 +1,20 @@
+# Premium IPTV Bot - Python Dependencies
+
+# Core Bot
+anthropic>=0.40.0
+python-telegram-bot>=20.0
+
+# Payment Integration
+stripe>=7.0.0
+
+# Analytics Dashboard
+flask>=3.0.0
+flask-httpauth>=4.8.0
+
+# Database (optional, für Production)
+# psycopg2-binary>=2.9.0  # PostgreSQL
+# pymongo>=4.0.0          # MongoDB
+
+# Utilities
+requests>=2.31.0
+python-dotenv>=1.0.0
