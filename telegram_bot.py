@@ -11,10 +11,9 @@ from telegram.ext import (
     filters, ContextTypes
 )
 
-# Konfiguration via Environment Variables (Railway-kompatibel)
-TELEGRAM_BOT_TOKEN = os.getenv("8384260643:AAFiOQD8qUDuy-svzdG0p-jwi6TtYZkI3P0")
-ANTHROPIC_API_KEY = os.getenv("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")
-ADMIN_CHAT_IDS = [int(os.getenv("1436567386", "0"))]
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+ADMIN_CHAT_IDS = [int(os.getenv("ADMIN_CHAT_IDS", "0"))]
 
 # Anthropic Client initialisieren
 anthropic = Anthropic(api_key=ANTHROPIC_API_KEY)
