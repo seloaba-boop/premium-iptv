@@ -10,7 +10,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 
 # Konfiguration
 TELEGRAM_BOT_TOKEN = "8384260643:AAFiOQD8qUDuy-svzdG0p-jwi6TtYZkI3P0"  # Von @BotFather
-ANTHROPIC_API_KEY = "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"   # Von console.anthropic.com
+ANTHROPIC_API_KEY = "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"   # Von console.anthropic.com
 ADMIN_CHAT_IDS = [1436567386]  # Liste mit Admin User IDs für Eskalation
 
 # Claude Client initialisieren
