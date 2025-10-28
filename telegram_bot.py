@@ -444,9 +444,9 @@ async def pay_paypal(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.edit_message_text(
         "💰 *PayPal Zahlung*\n\n"
         "Bitte sende den Betrag an:\n"
-        "`deine@paypal.email`\n\n"
+        "`https://paypal.me/PremiumIP`\n\n"
         "Oder nutze PayPal.me:\n"
-        "paypal.me/DeinLink\n\n"
+        "https://paypal.me/PremiumIP\n\n"
         "Nach Zahlung schreib uns bitte:\n"
         "📧 Deine PayPal Email\n"
         "💰 Betrag\n\n"
