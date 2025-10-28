@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium IPTV - Über 10.000 Kanäle in HD & 4K</title>
+    <meta name="description" content="Premium IPTV Streaming - Alle deutschen Kanäle, internationale Sender, Sport & Filme in HD & 4K. Jetzt 24h kostenlos testen!">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./Logo.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --dark: #1a1a2e;
+            --darker: #0f0f1a;
+            --light: #eaeaea;
+            --accent: #16213e;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold) 0%, #f4e5c0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--gold) 0%, #c99a2e 100%);
+            color: var(--darker);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 2rem 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(234, 234, 234, 0.8);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, #c99a2e 100%);
+            color: var(--darker);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--gold);
+        }
+
+        /* Features */
+        .features {
+            padding: 6rem 2rem;
+            background: rgba(15, 15, 26, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, var(--gold) 0%, #f4e5c0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(26, 26, 46, 0.6);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .feature-card p {
+            color: rgba(234, 234, 234, 0.7);
+            font-size: 0.95rem;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 6rem 2rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(22, 33, 62, 0.8) 100%);
+            border-radius: 25px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.05);
+            border-color: var(--gold);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.3);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--gold);
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--gold) 0%, #c99a2e 100%);
+            color: var(--darker);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 1.5rem 0;
+            background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .price-period {
+            font-size: 1rem;
+            color: rgba(234, 234, 234, 0.6);
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .features-list li {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(234, 234, 234, 0.8);
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .btn-pricing {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #c99a2e 100%);
+            color: var(--darker);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-pricing:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: rgba(15, 15, 26, 0.5);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 3rem auto 0;
+        }
+
+        .contact-card {
+            background: rgba(26, 26, 46, 0.6);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: rgba(234, 234, 234, 0.6);
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .nav-cta {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="./Logo.png" alt="Premium IPTV Logo" onerror="this.style.display='none'">
+                <span class="logo-text">PREMIUM IPTV</span>
+            </div>
+            <a href="#pricing" class="nav-cta">Jetzt starten →</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Dein Premium Entertainment<br>Ohne Kompromisse</h1>
+            <p class="hero-subtitle">
+                Über 10.000 Kanäle in brillanter HD & 4K Qualität. Deutsche Sender, internationale Programme, Live-Sport & On-Demand. Alles auf einem Gerät.
+            </p>
+            <div class="cta-buttons">
+                <a href="#pricing" class="btn-primary">
+                    ✨ Jetzt abonnieren
+                </a>
+                <a href="#contact" class="btn-secondary">
+                    🧪 24h kostenlos testen
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Warum <span>Premium IPTV</span>?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📺</div>
+                    <h3>10.000+ Kanäle</h3>
+                    <p>Alle deutschen Sender, internationale Programme aus 50+ Ländern, Sport, Filme & Serien</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3>HD & 4K Qualität</h3>
+                    <p>Kristallklare Bildqualität in High Definition und Ultra HD für das beste Seherlebnis</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Alle Geräte</h3>
+                    <p>Smart TV, Fire TV, Apple TV, Android, iOS, PC & Mac - überall verfügbar</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Sofortiger Zugang</h3>
+                    <p>Keine Wartezeit - nach Zahlung direkt loslegen und streamen</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Sicher & Stabil</h3>
+                    <p>99.9% Uptime, sichere Verbindung, keine Buffering-Probleme</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>24/7 Support</h3>
+                    <p>Telegram & WhatsApp Support - immer für dich da, auch nachts & am Wochenende</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Einfache <span>Preise</span></h2>
+            <div class="pricing-grid">
+                <!-- Single Device -->
+                <div class="pricing-card">
+                    <h3>Standard</h3>
+                    <div class="price">
+                        100€
+                        <span class="price-period">pro Jahr</span>
+                    </div>
+                    <ul class="features-list">
+                        <li>10.000+ Live-Kanäle</li>
+                        <li>HD & 4K Qualität</li>
+                        <li>1 Gerät gleichzeitig</li>
+                        <li>Alle Länder verfügbar</li>
+                        <li>Sport & Pay-TV Sender</li>
+                        <li>VOD Filme & Serien</li>
+                        <li>Zahlung: Stripe oder PayPal</li>
+                        <li>24/7 Support</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="window.location.href='#contact'">
+                        Jetzt kaufen
+                    </button>
+                </div>
+
+                <!-- Multi Device -->
+                <div class="pricing-card popular">
+                    <span class="popular-badge">BELIEBT</span>
+                    <h3>Premium</h3>
+                    <div class="price">
+                        150€
+                        <span class="price-period">pro Jahr</span>
+                    </div>
+                    <ul class="features-list">
+                        <li>10.000+ Live-Kanäle</li>
+                        <li>HD & 4K Qualität</li>
+                        <li>2 Geräte gleichzeitig</li>
+                        <li>Alle Länder verfügbar</li>
+                        <li>Sport & Pay-TV Sender</li>
+                        <li>VOD Filme & Serien</li>
+                        <li>Zahlung: Stripe oder PayPal</li>
+                        <li>Priority Support</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="window.location.href='#contact'">
+                        Jetzt kaufen
+                    </button>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: rgba(234, 234, 234, 0.6);">
+                💳 Sichere Zahlung mit Stripe & PayPal · 🧪 24h kostenlos testen
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Kontaktiere <span>Uns</span></h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <h3>Telegram Support</h3>
+                    <p style="margin-bottom: 1.5rem; color: rgba(234, 234, 234, 0.7);">
+                        Schnelle Antworten via Telegram Chat
+                    </p>
+                    <a href="https://t.me/premiumiptv_support_bot" class="contact-link" target="_blank">
+                        Zum Telegram Bot →
+                    </a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>WhatsApp Support</h3>
+                    <p style="margin-bottom: 1.5rem; color: rgba(234, 234, 234, 0.7);">
+                        Persönlicher Service via WhatsApp
+                    </p>
+                    <a href="https://wa.me/DEINE_NUMMER" class="contact-link" target="_blank">
+                        WhatsApp öffnen →
+                    </a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">🧪</div>
+                    <h3>24h Testversion</h3>
+                    <p style="margin-bottom: 1.5rem; color: rgba(234, 234, 234, 0.7);">
+                        Kostenlos & unverbindlich testen
+                    </p>
+                    <a href="https://t.me/premiumiptv_support_bot" class="contact-link" target="_blank">
+                        Test anfragen →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="./Logo.png" alt="Premium IPTV" class="footer-logo" onerror="this.style.display='none'">
+            <p class="footer-text">
+                © 2025 Premium IPTV. Alle Rechte vorbehalten.<br>
+                Dein Premium Entertainment Partner
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
