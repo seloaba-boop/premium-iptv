@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire TV Stick Installation - IBO Player | Premium IPTV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+            color: #eaeaea;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #D4AF37;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(234, 234, 234, 0.7);
+        }
+
+        .info-box {
+            background: rgba(26, 26, 46, 0.6);
+            border-left: 4px solid #D4AF37;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .step {
+            background: rgba(26, 26, 46, 0.8);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .step h2 {
+            color: #D4AF37;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #D4AF37 0%, #c99a2e 100%);
+            color: #0f0f1a;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .step-content {
+            margin-top: 1.5rem;
+        }
+
+        .code-box {
+            background: #0a0a15;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            color: #D4AF37;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .warning {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #FFC107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .tip {
+            background: rgba(33, 150, 243, 0.1);
+            border-left: 4px solid #2196F3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .success {
+            background: rgba(76, 175, 80, 0.1);
+            border-left: 4px solid #4CAF50;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-top: 1rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #D4AF37 0%, #c99a2e 100%);
+            color: #0f0f1a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: transform 0.3s ease;
+            margin: 1rem 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li {
+            padding-left: 2rem;
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            color: #D4AF37;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(26, 26, 46, 0.6);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.2);
+            color: #D4AF37;
+            font-weight: 700;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #D4AF37;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .step h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔥 Fire TV Stick Installation</h1>
+            <p class="subtitle">Premium IPTV mit IBO Player einrichten</p>
+            <p style="margin-top: 1rem; color: rgba(234, 234, 234, 0.5);">⏱️ Dauer: 5-10 Minuten</p>
+        </div>
+
+        <div class="info-box">
+            <h3 style="color: #D4AF37; margin-bottom: 1rem;">📋 Was du brauchst:</h3>
+            <ul>
+                <li>✅ Amazon Fire TV Stick (alle Modelle)</li>
+                <li>✅ Internetverbindung</li>
+                <li>✅ Deine Premium IPTV Zugangsdaten</li>
+                <li>✅ Fernbedienung</li>
+            </ul>
+        </div>
+
+        <!-- Video Tutorial -->
+        <div class="step">
+            <h2>
+                <span class="step-number">📹</span>
+                Video-Anleitung
+            </h2>
+            <div class="step-content">
+                <p>Schau dir das komplette Tutorial an:</p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/XeMAkuzPZyc?start=10" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                </div>
+                <div class="warning">
+                    <strong>⚠️ Wichtig:</strong> Im Video wird ein anderer Code gezeigt!<br>
+                    <strong>Aktueller Code: 511693</strong> (verwende diesen!)
+                </div>
+            </div>
+        </div>
+
+        <!-- Schritt 1 -->
+        <div class="step">
+            <h2>
+                <span class="step-number">1</span>
+                Downloader App installieren
+            </h2>
+            <div class="step-content">
+                <h3 style="color: #D4AF37; margin-top: 1.5rem;">1.1 Einstellungen öffnen</h3>
+                <ol>
+                    <li>Fire TV Hauptmenü öffnen</li>
+                    <li>Einstellungen (⚙️ Zahnrad oben rechts)</li>
+                    <li>Mein Fire TV</li>
+                    <li>Entwickleroptionen</li>
+                </ol>
+
+                <h3 style="color: #D4AF37; margin-top: 1.5rem;">1.2 Installation aktivieren</h3>
+                <div class="code-box">
+                    → Apps aus unbekannten Quellen: EIN ✅<br>
+                    → ADB-Debugging: EIN ✅
+                </div>
+                <div class="warning">
+                    <strong>⚠️ Wichtig:</strong> Beides aktivieren!
+                </div>
+
+                <h3 style="color: #D4AF37; margin-top: 1.5rem;">1.3 Downloader installieren</h3>
+                <ol>
+                    <li>Zurück zum Hauptmenü</li>
+                    <li>Suche (🔍 Lupe oben)</li>
+                    <li>Tippe: "Downloader"</li>
+                    <li>Erste App (oranges Icon) auswählen</li>
+                    <li>Herunterladen & Öffnen</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Schritt 2 -->
+        <div class="step">
+            <h2>
+                <span class="step-number">2</span>
+                IBO Player herunterladen
+            </h2>
+            <div class="step-content">
+                <h3 style="color: #D4AF37; margin-top: 1.5rem;">2.1 Downloader öffnen</h3>
+                <p>Beim ersten Mal alle Berechtigungen erlauben</p>
+
+                <h3 style="color: #D4AF37; margin-top: 1.5rem;">2.2 Download-Code eingeben</h3>
+                <div class="code-box" style="font-size: 1.5rem; text-align: center;">
+                    511693
+                </div>
+                <p style="margin-top: 1rem;">Im URL-Feld eingeben und "Go" klicken</p>
+
+                <div class="tip">
+                    <strong>💡 Tipp:</strong> Alternativ kannst du auch die volle URL eingeben:<br>
+                    <code style="color: #2196F3;">https://www.firesticktricks.com/iboplayer</code>
+                </div>
+
+                <h3 style="color: #D4AF37; margin-top: 1.5rem;">2.3 Installation</h3>
+                <ol>
+                    <li>Download läuft (ca. 30-60 Sekunden)</li>
+                    <li>"Installieren" klicken</li>
+                    <li>Warten (ca. 20 Sekunden)</li>
+                    <li>"Fertig" klicken</li>
+                </ol>
+
+                <h3 style="color: #D4AF37; margin-top: 1.5rem;">2.4 Datei löschen (WICHTIG!)</h3>
+                <div class="success">
+                    <strong>✅ Speicher sparen:</strong> Lösche die Downloader-Datei!<br>
+                    Wenn "Löschen" angeboten wird → JA klicken<br>
+                    (Spart ca. 25 MB Speicher)
+                </div>
+            </div>
+        </div>
+
+        <!-- Schritt 3 -->
+        <div class="step">
+            <h2>
+                <span class="step-number">3</span>
+                IBO Player einrichten
+            </h2>
+            <div class="step-content">
+                <h3 style="color: #D4AF37; margin-top: 1.5rem;">3.1 IBO Player öffnen</h3>
+                <ol>
+                    <li>Fire TV Hauptmenü</li>
+                    <li>Apps & Spiele</li>
+                    <li>"IBO Player" auswählen</li>
+                    <li>Öffnen</li>
+                </ol>
+
+                <h3 style="color: #D4AF37; margin-top: 1.5rem;">3.2 Login-Methode wählen</h3>
+                <p>Du hast 3 Optionen:</p>
+                <ul>
+                    <li><strong>Option 1: M3U URL</strong> (⭐ Empfohlen!)</li>
+                    <li><strong>Option 2: Xtream Codes</strong> (Auch gut!)</li>
+                    <li><strong>Option 3: Playlist URL</strong></li>
+                </ul>
+                <div class="tip">
+                    <strong>💡 Tipp:</strong> Wähle was zu deinen Zugangsdaten passt (bekommst du von uns!)
+                </div>
+            </div>
+        </div>
+
+        <!-- Schritt 4 -->
+        <div class="step">
+            <h2>
+                <span class="step-number">4</span>
+                Zugangsdaten eingeben
+            </h2>
+            <div class="step-content">
+                <h3 style="color: #D4AF37; margin-top: 1.5rem;">Methode A: M3U URL (Einfachste!)</h3>
+                <ol>
+                    <li>"M3U URL" wählen</li>
+                    <li>URL eingeben (bekommst du von uns!)</li>
+                    <li>Playlist Name: "Premium IPTV"</li>
+                    <li>"Speichern"</li>
+                </ol>
+
+                <div class="tip">
+                    <strong>💡 PRO-TIPP:</strong> Einfacheres Eingeben mit Handy!<br><br>
+                    <strong>So geht's:</strong>
+                    <ol style="margin-top: 0.5rem;">
+                        <li>Auf deinem Handy öffne: <strong>keyboard.amazonfiretvapp.com</strong></li>
+                        <li>Kopiere deine M3U URL</li>
+                        <li>Füge sie in das Feld ein</li>
+                        <li>WICHTIG: Klicke einmal auf "Zurück" ←</li>
+                        <li>Füge das "s" am Ende nochmal ein (https)</li>
+                        <li>Fertig - viel einfacher als mit Fernbedienung! ⚡</li>
+                    </ol>
+                </div>
+
+                <h3 style="color: #D4AF37; margin-top: 1.5rem;">Methode B: Xtream Codes</h3>
+                <div class="code-box">
+                    Server URL: http://dein-server.com<br>
+                    Username: dein_username<br>
+                    Password: dein_password
+                </div>
+                <ol>
+                    <li>"Xtream Codes API" wählen</li>
+                    <li>Daten eingeben (siehe oben)</li>
+                    <li>Playlist Name eingeben</li>
+                    <li>"Login" klicken</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Schritt 5 -->
+        <div class="step">
+            <h2>
+                <span class="step-number">5</span>
+                Fertig! Kanäle schauen 🎉
+            </h2>
+            <div class="step-content">
+                <div class="success">
+                    <strong>✅ Geschafft!</strong>
+                    <ul style="margin-top: 1rem;">
+                        <li>IBO Player lädt die Kanäle (10-30 Sekunden)</li>
+                        <li>Kanalliste erscheint</li>
+                        <li>Kategorie wählen (z.B. "Deutschland")</li>
+                        <li>Sender auswählen</li>
+                        <li>FERTIG! Viel Spaß! 📺🍿</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="step">
+            <h2>🎮 Navigation & Tipps</h2>
+            <div class="step-content">
+                <table>
+                    <tr>
+                        <th>Taste</th>
+                        <th>Funktion</th>
+                    </tr>
+                    <tr>
+                        <td>🔼🔽 Hoch/Runter</td>
+                        <td>Durch Kanäle zappen</td>
+                    </tr>
+                    <tr>
+                        <td>◀️▶️ Links/Rechts</td>
+                        <td>Kategorien wechseln</td>
+                    </tr>
+                    <tr>
+                        <td>⏸️ Pause</td>
+                        <td>Player pausieren</td>
+                    </tr>
+                    <tr>
+                        <td>🔙 Zurück</td>
+                        <td>Zum Menü</td>
+                    </tr>
+                    <tr>
+                        <td>🏠 Home</td>
+                        <td>Fire TV Hauptmenü</td>
+                    </tr>
+                </table>
+
+                <h3 style="color: #D4AF37; margin-top: 2rem;">Favoriten hinzufügen:</h3>
+                <ol>
+                    <li>Kanal auswählen</li>
+                    <li>Lange auf "OK" drücken (2 Sekunden)</li>
+                    <li>Stern ⭐ erscheint</li>
+                    <li>Kanal ist in "Favoriten"</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Problemlösungen -->
+        <div class="step">
+            <h2>🔧 Problemlösungen</h2>
+            <div class="step-content">
+                <h3 style="color: #D4AF37;">Problem: "Installation blockiert"</h3>
+                <p><strong>Lösung:</strong> Einstellungen → Entwickleroptionen → "Apps aus unbekannten Quellen" aktivieren</p>
+
+                <h3 style="color: #D4AF37; margin-top: 2rem;">Problem: "Kanäle laden nicht"</h3>
+                <p><strong>Lösung:</strong></p>
+                <ol>
+                    <li>Internet-Verbindung prüfen</li>
+                    <li>Zugangsdaten nochmal eingeben</li>
+                    <li>Uns im Bot kontaktieren: @premiumiptv_support_bot</li>
+                </ol>
+
+                <h3 style="color: #D4AF37; margin-top: 2rem;">Problem: "Buffering / Ruckeln"</h3>
+                <p><strong>Lösung:</strong></p>
+                <ul>
+                    <li>Internet-Geschwindigkeit: Min. 10 Mbps für HD</li>
+                    <li>LAN-Kabel statt WLAN nutzen</li>
+                    <li>Fire TV neu starten</li>
+                    <li>Hardware-Decoder aktivieren (Einstellungen → Player)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Checkliste -->
+        <div class="step">
+            <h2>✅ Installations-Checkliste</h2>
+            <div class="step-content">
+                <ul class="checklist">
+                    <li>Downloader App installiert</li>
+                    <li>IBO Player heruntergeladen (Code: 511693)</li>
+                    <li>IBO Player installiert</li>
+                    <li>Downloader-Datei gelöscht</li>
+                    <li>Zugangsdaten eingegeben</li>
+                    <li>Kanäle laden</li>
+                    <li>Testkanal funktioniert</li>
+                    <li>Alles läuft flüssig!</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Support -->
+        <div class="info-box" style="text-align: center; margin-top: 3rem;">
+            <h2 style="color: #D4AF37; margin-bottom: 1.5rem;">💬 Brauchst du Hilfe?</h2>
+            <p style="margin-bottom: 2rem;">Wir helfen dir gerne weiter!</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://t.me/premiumiptv_support_bot" class="btn" target="_blank">🤖 Zum Support Bot</a>
+                <a href="https://t.me/premiumiptv_de" class="btn" target="_blank">📢 Telegram Kanal</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p style="color: #D4AF37; font-size: 1.2rem; margin-bottom: 1rem;">Premium IPTV</p>
+            <p style="color: rgba(234, 234, 234, 0.5);">10.000+ Kanäle | 50+ Länder | HD & 4K</p>
+            <div class="footer-links">
+                <a href="/">🏠 Startseite</a>
+                <a href="https://t.me/premiumiptv_support_bot">🤖 Support Bot</a>
+                <a href="https://t.me/premiumiptv_de">📢 Telegram Kanal</a>
+            </div>
+            <p style="margin-top: 2rem; color: rgba(234, 234, 234, 0.3); font-size: 0.9rem;">
+                © 2024 Premium IPTV | Alle Rechte vorbehalten
+            </p>
+        </div>
+    </div>
+</body>
+</html>
