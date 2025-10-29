@@ -377,10 +377,10 @@ async def checkout(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     # Stripe Links basierend auf Preis
     stripe_links = {
-        100.00: "https://buy.stripe.com/LINK_FUER_100",  # 1 Gerät
-        119.99: "https://buy.stripe.com/LINK_FUER_120",  # 1 Gerät + 18+
-        150.00: "https://buy.stripe.com/LINK_FUER_150",  # 2 Geräte
-        169.99: "https://buy.stripe.com/LINK_FUER_170"   # 2 Geräte + 18+
+        100.00: "https://buy.stripe.com/bJe4gB95SdVCgMhaA0a7C03",  # 1 Gerät
+        119.99: "https://buy.stripe.com/7sY00lbe02cU2Vr9vWa7C00",  # 1 Gerät + 18+
+        150.00: "https://buy.stripe.com/6oU9AV1Dq9FmbrX7nOa7C02",  # 2 Geräte
+        169.99: "https://buy.stripe.com/14A5kFeqc18QeE9cI8a7C01"   # 2 Geräte + 18+
     }
     
     stripe_link = stripe_links.get(gesamt_preis, "https://buy.stripe.com/7sY00lbe02cU2Vr9vWa7C00")
@@ -469,7 +469,7 @@ async def pay_paypal(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"💰 *PayPal Zahlung*\n\n"
         f"Gesamtbetrag: *{gesamt_preis:.2f}€*\n\n"
         f"Sende den Betrag hier:\n"
-        f"https://paypal.me/DEIN_PAYPAL_LINK/{int(gesamt_preis)}\n\n"
+        f"https://paypal.me/PremiumIPTV/{int(gesamt_preis)}\n\n"
         f"_Trage deinen PayPal.me Link oben ein!_\n\n"
         f"Nach Zahlung schreib mir bitte:\n"
         f"✅ \"Habe {gesamt_preis:.2f}€ gezahlt\"\n"
