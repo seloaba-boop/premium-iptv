@@ -251,8 +251,8 @@ async def config_devices(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.edit_message_text(
         "📱 *Wie viele Geräte gleichzeitig?*\n\n"
         "💰 *Preise:*\n"
-        "• 1 Gerät: 100€/Jahr\n"
-        "• 2 Geräte: 150€/Jahr\n\n"
+        "• 1 Gerät: 63,99€/Jahr\n"
+        "• 2 Geräte: 79,99€/Jahr\n\n"
         "_(Länder-Anzahl beeinflusst den Preis nicht!)_",
         reply_markup=reply_markup,
         parse_mode='Markdown'
