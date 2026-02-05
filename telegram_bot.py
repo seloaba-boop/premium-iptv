@@ -289,7 +289,7 @@ async def config_adult(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 callback_data="toggle_adult_no"
             ),
             InlineKeyboardButton(
-                "✅ Ja (+19,99€)" if config["adult"] else "Ja (+19,99€)",
+                "✅ Ja (+9,99€)" if config["adult"] else "Ja (+9,99€)",
                 callback_data="toggle_adult_yes"
             )
         ],
@@ -304,7 +304,7 @@ async def config_adult(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "• 500+ Adult-Kanäle\n"
         "• Verschiedene Kategorien\n"
         "• Diskret & sicher\n\n"
-        "💰 Nur +19,99€/Jahr extra\n\n"
+        "💰 Nur +9,99€/Jahr extra\n\n"
         "⚠️ _Nur für Erwachsene (18+)_",
         reply_markup=reply_markup,
         parse_mode='Markdown'
@@ -347,13 +347,14 @@ async def show_summary(update: Update, context: ContextTypes.DEFAULT_TYPE):
         total_kanäle = sum(LAENDER[l]["kanäle"] for l in laender if l in LAENDER)
         laender_text = "\n".join(laender_namen) + f"\n\n📺 ~{total_kanäle:,} Kanäle"
     
-    # Preis berechnen
+    # Preis berechnen (LAUNCH SPECIAL: 20% Rabatt!)
+    # Gültig für erste 50 Kunden oder ersten Monat
     if geraete == 1:
-        basis_preis = 100.00
+        basis_preis = 63.99  # Basic Launch (statt 79,99€)
     else:
-        basis_preis = 150.00
+        basis_preis = 79.99  # Premium Launch (statt 99,99€)
     
-    adult_preis = 19.99 if adult else 0
+    adult_preis = 9.99 if adult else 0  # 18+ Addon
     gesamt_preis = basis_preis + adult_preis
     
     # Zusammenfassung
@@ -406,18 +407,18 @@ async def checkout(update: Update, context: ContextTypes.DEFAULT_TYPE):
     adult = config["adult"]
     
     if geraete == 1:
-        basis_preis = 100.00
+        basis_preis = 63.99  # Basic Launch
     else:
-        basis_preis = 150.00
+        basis_preis = 79.99  # Premium Launch
     
-    gesamt_preis = basis_preis + (19.99 if adult else 0)
+    gesamt_preis = basis_preis + (9.99 if adult else 0)
     
-    # Stripe Links basierend auf Preis
+    # Stripe Links basierend auf Preis (LAUNCH SPECIAL!)
     stripe_links = {
-        100.00: "https://buy.stripe.com/LINK_FUER_100",  # 1 Gerät
-        119.99: "https://buy.stripe.com/LINK_FUER_120",  # 1 Gerät + 18+
-        150.00: "https://buy.stripe.com/LINK_FUER_150",  # 2 Geräte
-        169.99: "https://buy.stripe.com/LINK_FUER_170"   # 2 Geräte + 18+
+        63.99: "https://buy.stripe.com/LINK_BASIC_LAUNCH",         # Basic Launch
+        73.98: "https://buy.stripe.com/LINK_BASIC_18_LAUNCH",      # Basic + 18+ Launch
+        79.99: "https://buy.stripe.com/LINK_PREMIUM_LAUNCH",       # Premium Launch
+        89.98: "https://buy.stripe.com/LINK_PREMIUM_18_LAUNCH"     # Premium + 18+ Launch
     }
     
     stripe_link = stripe_links.get(gesamt_preis, "https://buy.stripe.com/7sY00lbe02cU2Vr9vWa7C00")
@@ -491,11 +492,11 @@ async def pay_paypal(update: Update, context: ContextTypes.DEFAULT_TYPE):
     adult = config["adult"]
     
     if geraete == 1:
-        basis_preis = 100.00
+        basis_preis = 63.99  # Basic Launch
     else:
-        basis_preis = 150.00
+        basis_preis = 79.99  # Premium Launch
     
-    gesamt_preis = basis_preis + (19.99 if adult else 0)
+    gesamt_preis = basis_preis + (9.99 if adult else 0)
     
     keyboard = [
         [InlineKeyboardButton("« Zurück", callback_data="checkout")]
@@ -843,7 +844,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 Wichtige Info:
 - Pakete: 1 Gerät = 100€, 2 Geräte = 150€
 - 50+ Länder verfügbar (Deutschland, Türkei, UK, USA, etc.)
-- 18+ Addon: +19,99€
+- 18+ Addon: +9,99€
 - Alle Geräte unterstützt
 - HD & 4K Qualität
 
