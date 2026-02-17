@@ -59,7 +59,7 @@ user_configs = {}
 async def firetv_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Fire TV Setup Anleitung"""
     keyboard = [
-        [InlineKeyboardButton("📖 Komplette Anleitung", url="https://premiumip-tv.de/fire-tv-anleitung.html")],
+        [InlineKeyboardButton("📖 Komplette Anleitung", url="https://premium-tv.cc/fire-tv-anleitung.html")],
         [InlineKeyboardButton("🎬 Video-Tutorial", url="https://www.youtube.com/watch?v=XeMAkuzPZyc")],
         [InlineKeyboardButton("💬 Support", url="https://t.me/premiumiptv_support_bot")],
         [InlineKeyboardButton("« Hauptmenü", callback_data="back_to_start")]
@@ -644,7 +644,7 @@ async def faq_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "auf deinem Handy zum einfacheren\n"
             "Eingeben der URL!\n\n"
             "📖 *Komplette Anleitung mit Video:*\n"
-            "premiumip-tv.de/fire-tv-anleitung.html\n\n"
+            "premium-tv.cc/fire-tv-anleitung.html\n\n"
             "🎬 *Video-Tutorial:*\n"
             "youtube.com/watch?v=XeMAkuzPZyc\n"
             "(Code im Video ist alt - nutze 511693!)"
@@ -687,7 +687,7 @@ async def faq_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "**4. Fertig!**\n"
             "Alle Kanäle laden automatisch! 🎉\n\n"
             "🔥 *Fire TV Stick Anleitung:*\n"
-            "premiumip-tv.de/fire-tv-anleitung.html\n\n"
+            "premium-tv.cc/fire-tv-anleitung.html\n\n"
             "Bei Problemen einfach hier schreiben!"
         )
     
