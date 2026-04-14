@@ -61,7 +61,7 @@ async def firetv_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [InlineKeyboardButton("📖 Komplette Anleitung", url="https://premium-tv.cc/fire-tv-anleitung.html")],
         [InlineKeyboardButton("🎬 Video-Tutorial", url="https://www.youtube.com/watch?v=XeMAkuzPZyc")],
-        [InlineKeyboardButton("💬 Support", url="https://t.me/premiumiptv_support_bot")],
+        [InlineKeyboardButton("💬 WhatsApp Support", url="https://wa.me/4915679796724")],
         [InlineKeyboardButton("« Hauptmenü", callback_data="back_to_start")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -108,10 +108,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("🌍 Länder auswählen", callback_data="select_countries")],
         [InlineKeyboardButton("📦 Fertige Pakete", callback_data="show_packages")],
         [InlineKeyboardButton("🧪 24h Testversion", callback_data="request_test")],
+        [InlineKeyboardButton("💬 WhatsApp Support", url="https://wa.me/4915679796724")],
         [InlineKeyboardButton("❓ Hilfe & FAQ", callback_data="show_faq")],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    
+
     await update.message.reply_text(
         "👋 *Willkommen bei Premium IPTV!*\n\n"
         "🎬 Über 10.000 Kanäle in HD & 4K\n"
@@ -450,6 +451,7 @@ async def checkout(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     keyboard = [
         [InlineKeyboardButton("💰 Mit PayPal zahlen", callback_data="pay_paypal")],
+        [InlineKeyboardButton("💬 Frage per WhatsApp", url="https://wa.me/4915679796724")],
         [InlineKeyboardButton("« Zurück", callback_data="show_summary")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -720,10 +722,11 @@ async def back_to_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("🌍 Länder auswählen", callback_data="select_countries")],
         [InlineKeyboardButton("📦 Fertige Pakete", callback_data="show_packages")],
         [InlineKeyboardButton("🧪 24h Testversion", callback_data="request_test")],
+        [InlineKeyboardButton("💬 WhatsApp Support", url="https://wa.me/4915679796724")],
         [InlineKeyboardButton("❓ Hilfe & FAQ", callback_data="show_faq")],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    
+
     await query.edit_message_text(
         "👋 *Willkommen bei Premium IPTV!*\n\n"
         "🎬 Über 10.000 Kanäle in HD & 4K\n"
