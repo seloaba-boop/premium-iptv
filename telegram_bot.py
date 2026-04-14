@@ -56,6 +56,91 @@ def berechne_preis(laender_anzahl, adult_addon=False):
 user_configs = {}
 
 
+async def kanal_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Telegram-Kanal-Empfehlung"""
+    keyboard = [
+        [InlineKeyboardButton("📣 Jetzt beitreten", url="https://t.me/premium_tv_deutschland")],
+        [InlineKeyboardButton("« Hauptmenü", callback_data="back_to_start")]
+    ]
+    await update.message.reply_text(
+        "📣 *Unser Telegram-Kanal: @premium_tv_deutschland*\n\n"
+        "Warum beitreten?\n"
+        "✅ Exklusive Rabatt-Codes (nur für Kanal-Abonnenten!)\n"
+        "✅ Sport-Event Erinnerungen (Champions League, Bundesliga, Süper Lig)\n"
+        "✅ Neue Kanäle & Features zuerst erfahren\n"
+        "✅ Monatliche Gewinnspiele (Gratis-Abos, Fire TV Sticks)\n"
+        "✅ Technik-Tipps & Tricks\n\n"
+        "👥 *Tipp:* Teile den Kanal mit Freunden → du sicherst dir später Bonus-Monate!",
+        reply_markup=InlineKeyboardMarkup(keyboard),
+        parse_mode='Markdown'
+    )
+
+
+async def invite_friends_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Invite-Friends aus Button-Callback"""
+    query = update.callback_query
+    await query.answer()
+
+    user = query.from_user
+    bot_username = (await context.bot.get_me()).username
+    ref_link = f"https://t.me/{bot_username}?start=ref_{user.id}"
+    channel_link = "https://t.me/premium_tv_deutschland"
+
+    share_text = (
+        "🎬 Schau mal, ich nutze Premium IPTV — 10.000+ Kanäle in HD/4K!%0A%0A"
+        "Launch-Special: 20%25 Rabatt für die ersten 50 Kunden.%0A"
+        "24h kostenlos testen 👇%0A" + ref_link
+    )
+    share_url = f"https://t.me/share/url?url={ref_link}&text={share_text}"
+
+    keyboard = [
+        [InlineKeyboardButton("📤 Jetzt weiterleiten", url=share_url)],
+        [InlineKeyboardButton("📣 Kanal teilen", url=f"https://t.me/share/url?url={channel_link}&text=Checkt%20diesen%20IPTV-Kanal%20aus!")],
+        [InlineKeyboardButton("« Hauptmenü", callback_data="back_to_start")]
+    ]
+
+    await query.edit_message_text(
+        f"🎁 *Freunde einladen = Bonus kassieren!*\n\n"
+        f"Dein Link:\n`{ref_link}`\n\n"
+        f"💰 Pro Freund der bestellt → *+1 Monat gratis* für dich!",
+        reply_markup=InlineKeyboardMarkup(keyboard),
+        parse_mode='Markdown'
+    )
+
+
+async def einladen_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Freunde-werben-Freunde Einladungslink"""
+    user = update.effective_user
+    bot_username = (await context.bot.get_me()).username
+    ref_link = f"https://t.me/{bot_username}?start=ref_{user.id}"
+    channel_link = "https://t.me/premium_tv_deutschland"
+
+    share_text = (
+        "🎬 Schau mal, ich nutze Premium IPTV — 10.000+ Kanäle in HD/4K!%0A%0A"
+        "Launch-Special: 20%25 Rabatt für die ersten 50 Kunden.%0A"
+        "24h kostenlos testen 👇%0A" + ref_link
+    )
+    share_url = f"https://t.me/share/url?url={ref_link}&text={share_text}"
+
+    keyboard = [
+        [InlineKeyboardButton("📤 Jetzt an Freunde weiterleiten", url=share_url)],
+        [InlineKeyboardButton("📣 Kanal teilen", url=f"https://t.me/share/url?url={channel_link}&text=Checkt%20diesen%20IPTV-Kanal%20aus!")],
+        [InlineKeyboardButton("« Hauptmenü", callback_data="back_to_start")]
+    ]
+
+    await update.message.reply_text(
+        f"🎁 *Freunde einladen = Bonus kassieren!*\n\n"
+        f"Dein persönlicher Einladungs-Link:\n`{ref_link}`\n\n"
+        f"💰 *So funktioniert's:*\n"
+        f"1. Teile deinen Link mit Freunden/Familie\n"
+        f"2. Dein Freund macht 24h-Test oder bestellt\n"
+        f"3. Du bekommst pro Bestellung **+1 Monat gratis** auf dein Abo!\n\n"
+        f"📣 Oder teile direkt unseren Kanal: @premium_tv_deutschland",
+        reply_markup=InlineKeyboardMarkup(keyboard),
+        parse_mode='Markdown'
+    )
+
+
 async def firetv_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Fire TV Setup Anleitung"""
     keyboard = [
@@ -108,6 +193,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("🌍 Länder auswählen", callback_data="select_countries")],
         [InlineKeyboardButton("📦 Fertige Pakete", callback_data="show_packages")],
         [InlineKeyboardButton("🧪 24h Testversion", callback_data="request_test")],
+        [InlineKeyboardButton("📣 Telegram-Kanal", url="https://t.me/premium_tv_deutschland")],
+        [InlineKeyboardButton("🎁 Freunde einladen (+Bonus)", callback_data="invite_friends")],
         [InlineKeyboardButton("💬 WhatsApp Support", url="https://wa.me/4915679796724")],
         [InlineKeyboardButton("❓ Hilfe & FAQ", callback_data="show_faq")],
     ]
@@ -118,6 +205,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "🎬 Über 10.000 Kanäle in HD & 4K\n"
         "📺 50+ Länder verfügbar\n"
         "💰 Flexibel konfigurierbar\n\n"
+        "📣 *Tritt unserem Kanal bei:* @premium_tv_deutschland\n"
+        "→ Rabatt-Codes, Sport-News, Gewinnspiele\n\n"
         "🎯 *Wie möchtest du starten?*",
         reply_markup=reply_markup,
         parse_mode='Markdown'
@@ -539,10 +628,13 @@ async def request_test(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
     
     user = query.from_user
-    
-    keyboard = [[InlineKeyboardButton("« Zurück", callback_data="back_to_start")]]
+
+    keyboard = [
+        [InlineKeyboardButton("📣 Zum Telegram-Kanal (Pflicht!)", url="https://t.me/premium_tv_deutschland")],
+        [InlineKeyboardButton("« Zurück", callback_data="back_to_start")]
+    ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    
+
     await query.edit_message_text(
         "🧪 *Testversion angefordert!*\n\n"
         "Ein Admin wird dir gleich deine 24h-Testversion zusenden.\n\n"
@@ -550,7 +642,9 @@ async def request_test(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "✓ Voller Zugang zu allen Kanälen\n"
         "✓ 24 Stunden gültig\n"
         "✓ 1 Gerät gleichzeitig\n\n"
-        "⏰ Dauert ca. 5-10 Minuten",
+        "⏰ Dauert ca. 5-10 Minuten\n\n"
+        "📣 *Tipp:* Tritt unserem Kanal bei, dort gibt's regelmäßig Gewinnspiele & exklusive Angebote:\n"
+        "👉 @premium_tv_deutschland",
         reply_markup=reply_markup,
         parse_mode='Markdown'
     )
@@ -722,6 +816,8 @@ async def back_to_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("🌍 Länder auswählen", callback_data="select_countries")],
         [InlineKeyboardButton("📦 Fertige Pakete", callback_data="show_packages")],
         [InlineKeyboardButton("🧪 24h Testversion", callback_data="request_test")],
+        [InlineKeyboardButton("📣 Telegram-Kanal", url="https://t.me/premium_tv_deutschland")],
+        [InlineKeyboardButton("🎁 Freunde einladen (+Bonus)", callback_data="invite_friends")],
         [InlineKeyboardButton("💬 WhatsApp Support", url="https://wa.me/4915679796724")],
         [InlineKeyboardButton("❓ Hilfe & FAQ", callback_data="show_faq")],
     ]
@@ -732,6 +828,8 @@ async def back_to_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "🎬 Über 10.000 Kanäle in HD & 4K\n"
         "📺 50+ Länder verfügbar\n"
         "💰 Flexibel konfigurierbar\n\n"
+        "📣 *Tritt unserem Kanal bei:* @premium_tv_deutschland\n"
+        "→ Rabatt-Codes, Sport-News, Gewinnspiele\n\n"
         "🎯 *Wie möchtest du starten?*",
         reply_markup=reply_markup,
         parse_mode='Markdown'
@@ -807,6 +905,8 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Other
     elif query.data == "request_test":
         await request_test(update, context)
+    elif query.data == "invite_friends":
+        await invite_friends_callback(update, context)
     elif query.data == "show_faq":
         await show_faq(update, context)
     elif query.data.startswith("faq_"):
@@ -889,6 +989,8 @@ def main():
     
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("firetv", firetv_command))
+    application.add_handler(CommandHandler("kanal", kanal_command))
+    application.add_handler(CommandHandler("einladen", einladen_command))
     application.add_handler(CallbackQueryHandler(button_handler))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     
