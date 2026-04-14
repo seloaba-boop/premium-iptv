@@ -412,17 +412,7 @@ async def checkout(update: Update, context: ContextTypes.DEFAULT_TYPE):
         basis_preis = 79.99  # Premium Launch
     
     gesamt_preis = basis_preis + (9.99 if adult else 0)
-    
-    # Stripe Links basierend auf Preis (LAUNCH SPECIAL!)
-    stripe_links = {
-        63.99: "https://buy.stripe.com/LINK_BASIC_LAUNCH",         # Basic Launch
-        73.98: "https://buy.stripe.com/LINK_BASIC_18_LAUNCH",      # Basic + 18+ Launch
-        79.99: "https://buy.stripe.com/LINK_PREMIUM_LAUNCH",       # Premium Launch
-        89.98: "https://buy.stripe.com/LINK_PREMIUM_18_LAUNCH"     # Premium + 18+ Launch
-    }
-    
-    stripe_link = stripe_links.get(gesamt_preis, "https://buy.stripe.com/7sY00lbe02cU2Vr9vWa7C00")
-    
+
     # Benachrichtige Admin mit Config
     laender_text = ", ".join([LAENDER[l]["name"].split()[1] for l in config["laender"] if l in LAENDER])
     if len(config["laender"]) >= 10:
@@ -459,7 +449,6 @@ async def checkout(update: Update, context: ContextTypes.DEFAULT_TYPE):
             pass
     
     keyboard = [
-        [InlineKeyboardButton("💳 Mit Kreditkarte zahlen (Stripe)", url=stripe_link)],
         [InlineKeyboardButton("💰 Mit PayPal zahlen", callback_data="pay_paypal")],
         [InlineKeyboardButton("« Zurück", callback_data="show_summary")]
     ]
@@ -524,10 +513,10 @@ async def show_packages(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
     
     keyboard = [
-        [InlineKeyboardButton("🇩🇪 Nur Deutschland (100€)", callback_data="pkg_de")],
-        [InlineKeyboardButton("🇹🇷 Nur Türkei (100€)", callback_data="pkg_tr")],
-        [InlineKeyboardButton("🇩🇪🇹🇷 DE + TR (100€)", callback_data="pkg_de_tr")],
-        [InlineKeyboardButton("🌎 Alle Länder (100€)", callback_data="pkg_all")],
+        [InlineKeyboardButton("🇩🇪 Nur Deutschland", callback_data="pkg_de")],
+        [InlineKeyboardButton("🇹🇷 Nur Türkei", callback_data="pkg_tr")],
+        [InlineKeyboardButton("🇩🇪🇹🇷 DE + TR", callback_data="pkg_de_tr")],
+        [InlineKeyboardButton("🌎 Alle Länder", callback_data="pkg_all")],
         [InlineKeyboardButton("🎨 Eigene Auswahl", callback_data="select_countries")],
         [InlineKeyboardButton("« Zurück", callback_data="back_to_start")]
     ]
@@ -842,9 +831,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             system=f"""Du bist ein freundlicher Support-Agent für Premium IPTV.
 
 Wichtige Info:
-- Pakete: 1 Gerät = 100€, 2 Geräte = 150€
+- LAUNCH SPECIAL (20% Rabatt, erste 50 Kunden!): Basic (1 Gerät) = 63,99€/Jahr, Premium (2 Geräte) = 79,99€/Jahr
+- Regulärpreis danach: Basic 79,99€, Premium 99,99€
 - 50+ Länder verfügbar (Deutschland, Türkei, UK, USA, etc.)
 - 18+ Addon: +9,99€
+- Zahlung: PayPal
+- 24h kostenloser Test verfügbar
 - Alle Geräte unterstützt
 - HD & 4K Qualität
 
